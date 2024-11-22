@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
+import csv
 
 # Remplacez 'fichier.xlsx' et 'fichier.csv' par vos noms de fichiers
 excel_file = "Table Ciqual 2020_FR_2020 07 07.xls"
 csv_file = "ciqual.csv"
+unsaturated_fat_list = []
 
 filtered_colums = {
-     "alim_nom_fr": "name",
+    "alim_nom_fr": "name",
     "alim_grp_nom_fr": "alim_grp_nom_fr",
     "alim_ssgrp_nom_fr": "alim_ssgrp_nom_fr",
     "alim_ssssgrp_nom_fr": "alim_ssssgrp_nom_fr",
@@ -21,14 +23,14 @@ filtered_colums = {
     "Lactose (g/100 g)": "lactose",
     "Fibres alimentaires (g/100 g)": "fiber",
     "Calcium (mg/100 g)": "calcium",
+    "Rétinol (µg/100 g)": "vitamin_a",
+    "Vitamine B5 ou Acide pantothénique (mg/100 g)": "vitamin_b5",
+    "Vitamine B6 (mg/100 g)": "vitamin_b6",
+    "Vitamine B12 (µg/100 g)": "vitamin_b12",
     "Vitamine D (µg/100 g)": "vitamin_d",
+    "Vitamine C (mg/100 g)": "vitamin_c",
     "Vitamine E (mg/100 g)": "vitamin_e",
     "Vitamine K1 (µg/100 g)": "vitamin_k",
-    "Vitamine C (mg/100 g)": "vitamin_c",
-    "Rétinol (µg/100 g)": "vitamin_a",
-    "Vitamine B12 (µg/100 g)": "vitamin_b12",
-    "Vitamine B6 (mg/100 g)": "vitamin_b6",
-    "Vitamine B5 ou Acide pantothénique (mg/100 g)": "vitamin_b5",
 }
 
 
@@ -56,7 +58,12 @@ for index,row in new_file.iterrows():
                except Exception as err:
                     print(value)
                     print(err)
-               new_file.at[index, col] = value
+               new_file.at[index, col] = value 
+     unsaturated_fat = float(new_file.loc[index, "total_fat"]) - float(new_file.loc[index, "saturated_fat"])
+     unsaturated_fat_list.append(unsaturated_fat)
+     print(unsaturated_fat)
+
+new_file["unsaturated_fat"] = unsaturated_fat_list
 
 
 
@@ -64,6 +71,7 @@ print(new_file.loc[1140, new_file.columns[4:]])
 print(new_file.loc[2049, new_file.columns[4:]])
 
 # Exporter vers un fichier CSV
-new_file.to_csv(csv_file, index=False)
+# new_file.to_csv(csv_file, index=False)
+new_file.to_csv(csv_file, index=False, quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
 
 print(f"Conversion terminée : {csv_file}")

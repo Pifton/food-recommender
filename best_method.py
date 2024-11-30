@@ -79,8 +79,8 @@ def check_scores(data, k_values):
         # ("KernelPCA", {"kernel": "cosine"}),
 
         ("KernelPCA", {"kernel": "poly", "degree": 2}),
-        ("KernelPCA", {"kernel": "poly", "degree": 4}),
-        ("KernelPCA", {"kernel": "poly", "degree": 5}),
+        # ("KernelPCA", {"kernel": "poly", "degree": 4}),
+        # ("KernelPCA", {"kernel": "poly", "degree": 5}),
     ]
     saved_results = {}
 
@@ -96,7 +96,7 @@ def check_scores(data, k_values):
             saved_results[f"{scaler}, {decomposer}"] = results
 
             title = f"{scaler}, {decomposer}, {params}"
-            draw_graph(k_values, results["Inertia"], results["Silhouette"], title)
+            # draw_graph(k_values, results["Inertia"], results["Silhouette"], title)
 
 
 
@@ -131,7 +131,7 @@ def draw_graph(k_values, iniertia_score, silhouette_score, title):
         
 
 def main():
-    k_values = range(2, 28)
+    k_values = range(2, 12)
     file = "ciqual.csv"
     check_scores(file, k_values)
     
@@ -190,4 +190,7 @@ main()
 #     plt.tight_layout()
 
 #     # Affiche le graphique
-#     plt.show()
+    # plt.show()
+
+
+    

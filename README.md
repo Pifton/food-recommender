@@ -20,6 +20,8 @@ Ce projet réalise un **clustering des aliments** basé sur leurs valeurs nutrit
 6. **Clustering Final** : Application de la méthode de clustering choisie avec un nombre défini de clusters.
 7. **Recherche des Voisins les Plus Proches** : Permet à l'utilisateur de sélectionner un aliment et de trouver les **10 aliments les plus similaires**.
 
+## Structure du Projet
+
 ```bash
 tree
 ├── clusteringg.py #clustering final permettant de trouver les voisins les plus proches de l'aliment sélectionné
@@ -67,14 +69,14 @@ tree
 ## Utilisation
 
 1. **Prétraitement des données, évaluation des méthodes de clustering et génération des heatmaps :**
-       #Retourne uniquement les 10 voisins les plus proches actuellement.
-       #Décommentez certaines lignes pour réitérer les différentes évaluations (le code est commenté pour les identifier facilement)
+       - Retourne uniquement les 10 voisins les plus proches actuellement.
+       - Décommentez certaines lignes pour réitérer les différentes évaluations (le code est commenté pour les identifier facilement)
     ```bash
     python main.py
     ```
 
 3. **Sélection d'un aliment et recherche des 10 voisins les plus proches :**
-       #Lors de l'exécution de `main.py`, suivez les instructions à l'écran.
+       - Lors de l'exécution de `main.py`, suivez les instructions à l'écran.
 
 ## Exemple d'Exécution
 

@@ -104,6 +104,33 @@ def check_scores(data, k_values):
             title = f"{scaler}, {decomposer}, {params}"
             # draw_graph(k_values, results["Inertia"], results["Silhouette"], title)
 
+def draw_graph(k_values, iniertia_score, silhouette_score, title):
+    plt.figure(figsize=(15, 6))
+
+
+    plt.subplot(1, 2, 1)
+    plt.plot(k_values, iniertia_score, marker="o", label="Inertia")
+    plt.title("Inertia Score (Elbow method)")
+    plt.xlabel("Number of clusters")
+    plt.ylabel("Inertia Score")
+    plt.grid(True, linestyle='--', linewidth=0.5)
+    plt.xticks(range(min(k_values), max(k_values) + 1, 1))
+
+    plt.subplot(1, 2, 2)
+    plt.plot(k_values, silhouette_score, marker="o", label="Silhouette")
+    plt.title("Silhouette Score")
+    plt.xlabel("Number of clusters")
+    plt.ylabel("Silhouette Score")
+    plt.grid(True, linestyle='--', linewidth=0.5)
+    plt.xticks(range(min(k_values), max(k_values) + 1, 1))
+
+    plt.suptitle(title, fontsize=16, fontweight="bold")
+
+    plt.savefig(f"./optimal_clusters/{title.replace(' ', '_')}.png")
+    plt.close()
+
+        
+
 def check_heatmap(data):
     method = [
         # Les 3 meilleurs methodes en fonction des score de silhouette et d'inertie
@@ -197,36 +224,8 @@ def heatmap_graph(data, title, labels, n_clusters, debug_file):
     plt.savefig(f"./heatmaps/{title.replace(' ', '_')}.png")
     plt.close()
 
-
-def draw_graph(k_values, iniertia_score, silhouette_score, title):
-    plt.figure(figsize=(15, 6))
-
-
-    plt.subplot(1, 2, 1)
-    plt.plot(k_values, iniertia_score, marker="o", label="Inertia")
-    plt.title("Inertia Score (Elbow method)")
-    plt.xlabel("Number of clusters")
-    plt.ylabel("Inertia Score")
-    plt.grid(True, linestyle='--', linewidth=0.5)
-    plt.xticks(range(min(k_values), max(k_values) + 1, 1))
-
-    plt.subplot(1, 2, 2)
-    plt.plot(k_values, silhouette_score, marker="o", label="Silhouette")
-    plt.title("Silhouette Score")
-    plt.xlabel("Number of clusters")
-    plt.ylabel("Silhouette Score")
-    plt.grid(True, linestyle='--', linewidth=0.5)
-    plt.xticks(range(min(k_values), max(k_values) + 1, 1))
-
-    plt.suptitle(title, fontsize=16, fontweight="bold")
-
-    plt.savefig(f"./optimal_clusters/{title.replace(' ', '_')}.png")
-    plt.close()
-
-        
-
 def main():
-    file = "./data/ciqual.csv"
+    file = "../data/ciqual.csv"
 
     # k_values = range(2, 12)
     # check_scores(file, k_values)

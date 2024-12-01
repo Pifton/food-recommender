@@ -3,8 +3,8 @@ import numpy as np
 import csv
 
 # Remplacez 'fichier.xlsx' et 'fichier.csv' par vos noms de fichiers
-excel_file = "Table Ciqual 2020_FR_2020 07 07.xls"
-csv_file = "ciqual.csv"
+excel_file = "./data/Table Ciqual 2020_FR_2020 07 07.xls"
+csv_file = "./data/ciqual.csv"
 unsaturated_fat_list = []
 
 filtered_colums = {

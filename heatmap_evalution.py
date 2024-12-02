@@ -89,9 +89,9 @@ def heatmap_graph(data, title, labels, n_clusters, debug_file):
     # sns.heatmap(df, annot=True, fmt=".2f", cmap="viridis", norm=LogNorm(vmin=vmin, vmax=vmax), cbar_kws={'label': 'Valeur PCA','format': LogFormatter()})
     print(title)
     if title == "RobustScaler, PCA, {'n_components': 5}, N_clusters: 7":
-        ax = sns.heatmap(df, annot=True, fmt=".2f", cmap="viridis", norm=SymLogNorm(linthresh=1, vmin=vmin, vmax=vmax, base=10), cbar_kws={'label': 'Valeur PCA'})
+        ax = sns.heatmap(df, annot=True, fmt=".2f", cmap="viridis", norm=SymLogNorm(linthresh=1, vmin=vmin, vmax=vmax), cbar_kws={'label': 'Valeur PCA'})
     else :
-        ax = sns.heatmap(df, cmap="viridis", norm=SymLogNorm(linthresh=1, vmin=vmin, vmax=vmax, base=10), cbar_kws={'label': 'Valeur PCA'})
+        ax = sns.heatmap(df, cmap="viridis", norm=SymLogNorm(linthresh=1, vmin=vmin, vmax=vmax), cbar_kws={'label': 'Valeur PCA'})
 
     # Obtenir le colorbar
     cbar = ax.collections[0].colorbar

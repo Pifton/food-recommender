@@ -15,23 +15,32 @@ from matplotlib.ticker import FuncFormatter
 
 
 def compute_distances(values_pca, selected_index):
+    # Calcule la distance euclidienne entre un point donné (selected_index)
+    # et tous les autres points dans l'espace transformé (values_pca).
     target_point = values_pca[selected_index]
+    # Tableau des distances pour chaque point par rapport au point de référence.
     distances = np.linalg.norm(values_pca - target_point, axis=1)
     return distances
 
 def get_nearest_neighbors(distances, selected_index, n_neighbors=10):
-    distances[selected_index] = np.inf  # Exclure l'aliment sélectionné
-    nearest_indices = np.argsort(distances)[:n_neighbors]
-    return nearest_indices
+    # Exclure l'aliment sélectionné en lui donnant une valeure infini
+    distances[selected_index] = np.inf
+    # Index des 10 voisins les plus proches
+    neigbor_idx = np.argsort(distances)[:n_neighbors]
+    return neigbor_idx
 
-def display_neighbors(data, nearest_indices, distances):
+def display_neighbors(data, neigbor_idx, distances):
     print("\nLes 10 aliments les plus proches sont:")
-    for idx, neighbor_idx in enumerate(nearest_indices):
+    # Afficher les 10 aliments les plus proches
+    # pos correspond a la position de l'aliment dans la liste => ordre plus proche au plus lointain
+    # neighbor_idx correspond a l'indexe de l'aliment
+    for pos, neighbor_idx in enumerate(neigbor_idx):
         aliment = data.iloc[neighbor_idx]['name']
-        distance = distances[idx]
-        print(f"{idx + 1}. {aliment} - Distance: {distance:.4f}")
+        distance = distances[pos]
+        print(f"{pos + 1}. {aliment} - Distance: {distance:.4f}")
         print("Valeurs nutritionnelles:")
-        nutrition_values = data.iloc[neighbor_idx, 4:-1]  # Exclure la colonne 'cluster'
+        # Exclure la colonne 'cluster'
+        nutrition_values = data.iloc[neighbor_idx, 4:-1]
         print(nutrition_values.to_string())
         print("---------------------------")
 
@@ -58,10 +67,10 @@ def search_cluster(data, n_clusters, values_pca, selected_item):
      distances = compute_distances(values_pca_same_cluster, selected_index_in_cluster)
 
      # Trouver les voisins les plus proches dans le même cluster
-     nearest_indices_in_cluster = get_nearest_neighbors(distances, selected_index_in_cluster)
+     neigbor_idx_in_cluster = get_nearest_neighbors(distances, selected_index_in_cluster)
 
      # Obtenir les indices originaux des voisins
-     nearest_indices = same_cluster_indices[nearest_indices_in_cluster]
+     neigbor_idx = same_cluster_indices[neigbor_idx_in_cluster]
 
      # Afficher les 10 voisins les plus proches
-     display_neighbors(data, nearest_indices, distances[nearest_indices_in_cluster])
+     display_neighbors(data, neigbor_idx, distances[neigbor_idx_in_cluster])

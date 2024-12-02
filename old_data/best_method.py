@@ -220,12 +220,12 @@ def heatmap_graph(data, title, labels, n_clusters, debug_file):
     plt.xlabel("Components")
     plt.ylabel("Clusters")
     plt.tight_layout()
-    plt.show()
     plt.savefig(f"./heatmaps/{title.replace(' ', '_')}.png")
+    plt.show()
     plt.close()
 
 def main():
-    file = "../data/ciqual.csv"
+    file = "./data/ciqual.csv"
 
     # k_values = range(2, 12)
     # check_scores(file, k_values)

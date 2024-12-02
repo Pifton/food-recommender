@@ -103,6 +103,6 @@ def heatmap_graph(data, title, labels, n_clusters, debug_file):
     plt.xlabel("Components")
     plt.ylabel("Clusters")
     plt.tight_layout()
+    plt.savefig(f"./heatmaps/{title.replace(' ', '_')}.png")
     plt.show()
-#     plt.savefig(f"./heatmaps/{title.replace(' ', '_')}.png")
     plt.close()

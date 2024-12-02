@@ -20,18 +20,18 @@ def main():
 
      # Check_heatmap nous ert pour evaluer la variance d'un composant entre differents clusters
      # Cela nous permetra donc de realiser un choix final
-     '''check_heatmap(file)'''
+     check_heatmap(file)
 
      # clustering final
      # choix du nombre de clusters
-     n_clusters = 7
+     # n_clusters = 7
      # preparation des données
-     data, values_pca, labels = prepare_data(file, 'RobustScaler', 'KernelPCA', {'n_components': 5})
+     # data, values_pca, labels = prepare_data(file, 'RobustScaler', 'KernelPCA', {'n_components': 5})
      # Selection de l'aliment souhaité
-     selected_aliment_idx = select_food(data)
+     # selected_aliment_idx = select_food(data)
 
      # retourne les 10 voisins les plus proches
-     search_cluster(data, n_clusters, values_pca, selected_aliment_idx)
+     # search_cluster(data, n_clusters, values_pca, selected_aliment_idx)
      # Selection de l'aliment souhaite
 
 main()
